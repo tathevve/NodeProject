@@ -29,10 +29,12 @@ const createTodo = (req, res) => {
   let todos = getTodos();
   todos = JSON.parse(todos);
   let uuid = uuidv4();
+  console.log(req.query);
+  console.log(req.body);
   let todo = {
     id: uuid,
-    title: req.params.title,
-    completed: req.params.completed,
+    title: req.query.title,
+    completed: req.query.completed,
   };
   todos.push(todo);
   todos = JSON.stringify(todos, null, 2);
