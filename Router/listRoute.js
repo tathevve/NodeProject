@@ -10,9 +10,9 @@ router
     .get('/getTodoById/:id', (req, res) => {
     list.getTodoById(req, res);
     })
-    // .post('/create', (req, res) => {
-    // list.create(req, res);
-    // })
+    .post('/create', (req, res) => {
+    list.createTodo(req, res);
+    })
     // .patch('/update/:uuid', (req, res)=> {
     // list.update(req, res);
     // })

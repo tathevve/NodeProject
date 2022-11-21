@@ -1,19 +1,23 @@
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcryptjs");
 const fs = require("fs");
-const todos = "../Constants/todos.json";
+let todosList = "./Constants/todos.json";
+
+// console.log(todosList,'todosList')
 
 const getTodos = () => {
   try {
-    return fs.readFile(todos, "utf8");
+    return fs.readFileSync(todosList, "utf8");
   } catch (e) {
     return e;
   }
 };
 
+// console.log(getTodos())
+
 const getTodoById = (req, res) => {
   const id = req.params.id;
-  const todos = getTodos();
+  let todos = getTodos();
 
   todos = JSON.parse(todos);
 
@@ -22,13 +26,24 @@ const getTodoById = (req, res) => {
 };
 
 const createTodo = (req, res) => {
+  let todos = getTodos();
+  todos = JSON.parse(todos);
   let uuid = uuidv4();
   let todo = {
     id: uuid,
-    title: req.body.title,
-    completed: req.body.completed,
+    title: req.params.title,
+    completed: req.params.completed,
   };
   todos.push(todo);
+  todos = JSON.stringify(todos, null, 2);
+  console.log(todo, "todo");
+  // console.log(todos, "todos");
+
+  fs.writeFile(todosList, todos, (err) => {
+    if (err) return err;
+  });
+
+  todos = JSON.parse(todos);
   res.status(200).send(todos);
 };
 
