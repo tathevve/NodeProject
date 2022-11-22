@@ -103,5 +103,5 @@ module.exports = {
   getUsers,
   register,
   signIn,
-  //   logOut,
+  //signOut,
 };
