@@ -1,9 +1,6 @@
 const { v4: uuidv4 } = require("uuid");
-const bcrypt = require("bcryptjs");
 const fs = require("fs");
 let todosList = "./Constants/todos.json";
-
-// console.log(todosList,'todosList')
 
 const getTodos = () => {
   try {
@@ -12,8 +9,6 @@ const getTodos = () => {
     return e;
   }
 };
-
-// console.log(getTodos())
 
 const getTodoById = (req, res) => {
   const id = req.params.id;
@@ -29,8 +24,6 @@ const createTodo = (req, res) => {
   let todos = getTodos();
   todos = JSON.parse(todos);
   let uuid = uuidv4();
-  console.log(req.query);
-  console.log(req.body);
   let todo = {
     id: uuid,
     title: req.query.title,
@@ -39,9 +32,8 @@ const createTodo = (req, res) => {
   todos.push(todo);
   todos = JSON.stringify(todos, null, 2);
   console.log(todo, "todo");
-  // console.log(todos, "todos");
 
-  fs.writeFile(todosList, todos, (err) => {
+  fs.writeFileSync(todosList, todos, (err) => {
     if (err) return err;
   });
 
@@ -51,33 +43,42 @@ const createTodo = (req, res) => {
 
 const updateTodo = (req, res) => {
   const id = req.params.id;
-  const todos = getTodos();
-
+  let todos = getTodos();
   todos = JSON.parse(todos);
 
-  const changedUser = todos.map((item) => {
-    if (item.id === id) {
+  let changedUser = todos.map((item) => {
+    console.log("item id", item.id);
+    if (item.id == id) {
       return {
         ...item,
-        title: req.params.title,
-        completed: req.params.completed,
+        title: req.query.title,
+        completed: req.query.completed,
       };
     } else {
       return { ...item };
     }
   });
-  console.log(changedUser);
-  res.send(changedUser);
+
+  changedUser = JSON.stringify(changedUser, null, 2);
+  fs.writeFileSync(todosList, changedUser, (err) => {
+    if (err) return err;
+  });
+
+  res.status(200).send(changedUser);
 };
 
 const deleteTodo = (req, res) => {
   let id = req.params.id;
-  const todos = getTodos();
+  let todos = getTodos();
   todos = JSON.parse(todos);
-  const filteredTodos = todos.filter((todo) => todo.id !== id);
+  let filteredTodos = todos.filter((todo) => todo.id != id);
 
   console.log(filteredTodos);
-  res.send(filteredTodos);
+  filteredTodos = JSON.stringify(filteredTodos, null, 2);
+  fs.writeFileSync(todosList, filteredTodos, (err) => {
+    if (err) return err;
+  });
+  res.status(200).send(filteredTodos);
 };
 
 module.exports = {

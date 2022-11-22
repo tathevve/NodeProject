@@ -13,11 +13,11 @@ router
     .post('/create', (req, res) => {
     list.createTodo(req, res);
     })
-    // .patch('/update/:uuid', (req, res)=> {
-    // list.update(req, res);
-    // })
-    // .delete('/delete/:uuid', (req, res) => {
-    // list.destroy(req, res);
-    // });
+    .patch('/update/:id', (req, res)=> {
+    list.updateTodo(req, res);
+    })
+    .delete('/delete/:id', (req, res) => {
+    list.deleteTodo(req, res);
+    });
 
 module.exports = router;
