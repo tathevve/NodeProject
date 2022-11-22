@@ -81,6 +81,7 @@ const signIn = (req, res) => {
         expiresIn: "2h",
       }
     );
+    jwt.verify(token, secretkeyappearshere);
 
     checkLogin.token = token;
 
