@@ -71,7 +71,7 @@ const signIn = (req, res) => {
 
   let checkLogin = users.find((user) => user?.email === email);
 
-//   console.log(checkLogin, "check");'
+  //   console.log(checkLogin, "check");'
 
   if (checkLogin && checkLogin.password === password) {
     const token = jwt.sign(
@@ -81,8 +81,6 @@ const signIn = (req, res) => {
         expiresIn: "2h",
       }
     );
-    // jwt.verify(token, "secretkeyappearshere");
-    console.log(jwt.verify(token, "secretkeyappearshere"), "ajaa");
 
     // checkLogin.token = token;
 
