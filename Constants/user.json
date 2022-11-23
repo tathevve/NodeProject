@@ -28,7 +28,6 @@
     "id": 1,
     "name": "Tom",
     "email": "a@b.com",
-    "password": "A123456",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFAYi5jb20iLCJpYXQiOjE2NjkxMjQxODIsImV4cCI6MTY2OTEzMTM4Mn0.u8n4BjzNoF-cYI1axHNbBk6ZDN-MiGxOBiEPiSCMqgk"
+    "password": "A123456"
   }
 ]
