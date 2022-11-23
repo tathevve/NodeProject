@@ -1,23 +1,23 @@
-const express = require('express');
-const list = require('../Controllers/TodoController');
-const router = express.Router();
+import express from 'express';
+import {createTodo,deleteTodo,getTodoById,getTodos,updateTodo} from '../Controllers/TodoController';
 
+const router = express.Router();
 
 router
     .get('/getTodos', (req, res) => {
-    res.status(200).send(list.getTodos());
+    res.status(200).send(getTodos());
     })
     .get('/getTodoById/:id', (req, res) => {
-    list.getTodoById(req, res);
+    getTodoById(req, res);
     })
     .post('/create', (req, res) => {
-    list.createTodo(req, res);
+    createTodo(req, res);
     })
     .patch('/update/:id', (req, res)=> {
-    list.updateTodo(req, res);
+    updateTodo(req, res);
     })
     .delete('/delete/:id', (req, res) => {
-    list.deleteTodo(req, res);
+    deleteTodo(req, res);
     });
 
-module.exports = router;
+export default router;

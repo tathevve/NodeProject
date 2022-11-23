@@ -1,6 +1,6 @@
-const { v4: uuidv4 } = require("uuid");
-const fs = require("fs");
-let todosList = "./Constants/todos.json";
+import { v4 } from "uuid";
+import  fs from "fs";
+import todosList from "../Constants/todos.json" assert { type: "json" };
 
 const getTodos = () => {
   try {
@@ -81,10 +81,10 @@ const deleteTodo = (req, res) => {
   res.status(200).send(filteredTodos);
 };
 
-module.exports = {
+export {
   getTodos,
   getTodoById,
   createTodo,
   updateTodo,
   deleteTodo,
-};
+}

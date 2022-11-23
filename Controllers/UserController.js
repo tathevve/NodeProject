@@ -1,9 +1,9 @@
-const { v4: uuidv4 } = require("uuid");
-const bcrypt = require("bcryptjs");
-const fs = require("fs");
-const jwt = require("jsonwebtoken");
-let userList = "./Constants/user.json";
-const user = require("../config/model");
+import { v4 } from "uuid";
+import bcrypt from "bcryptjs";
+import fs from "fs";
+import jwt from "jsonwebtoken";
+import userList from "../Constants/user.json" assert { type: "json" };
+// import user from "../config/model";
 
 const getUsers = () => {
   try {
@@ -101,9 +101,10 @@ const signIn = (req, res) => {
   res.status(400).send("Invalid Credentials");
 };
 
-module.exports = {
+export {
   getUsers,
   register,
   signIn,
   //signOut,
-};
+}
+
