@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const fs = require("fs");
 const jwt = require("jsonwebtoken");
 let userList = "./Constants/user.json";
+const user = require("../config/model");
 
 const getUsers = () => {
   try {
@@ -47,9 +48,10 @@ const register = (req, res) => {
     }
   );
 
-  newUser.token = token;
+  // newUser.token = token;
 
-  users.push(newUser);
+  // users.push(newUser);
+  
 
   users = JSON.stringify(users, null, 2);
   fs.writeFile(userList, users, (err) => {
