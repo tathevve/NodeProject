@@ -3,11 +3,7 @@ import  fs from "fs";
 import todosList from "../Constants/todos.json" assert { type: "json" };
 
 const getTodos = () => {
-  try {
-    return fs.readFileSync(todosList, "utf8");
-  } catch (e) {
-    return e;
-  }
+  return todosList;
 };
 
 const getTodoById = (req, res) => {

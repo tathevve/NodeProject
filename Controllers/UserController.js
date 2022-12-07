@@ -25,8 +25,9 @@ const register = (req, res) => {
   }
 
   let checkExist = users.find((user) => user?.email === email);
+  
   console.log(checkExist, "check");
-
+ 
   if (checkExist) {
     return res.status(409).send("User Already Exist. Please Login");
   }
