@@ -10,10 +10,11 @@ import "dotenv/config"
 const uri = process.env.DB_URI;
 const port = 5050;
 const app = express();
+app.use(express.json())
 
-mongoose.connect(uri, () => {
-  app.use(express.json());
-});
+// mongoose.connect(uri, () => {
+//   app.use(express.json());
+// });
 
 app.use("/users", userRoute);
 app.use("/list", listRoute);

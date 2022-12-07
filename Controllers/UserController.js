@@ -35,23 +35,23 @@ const register = (req, res) => {
   //   console.log(encryptedPassword.then((a) => console.log(a)), "encrypt");
 
   let newUser = {
-    id: uuid,
+    id: users.length + 1,
     name: name,
     email: email.toLowerCase(),
     password: password,
   };
 
-  const token = jwt.sign(
-    { user_id: newUser.id, email },
-    "secretkeyappearshere",
-    {
-      expiresIn: "2h",
-    }
-  );
+  // const token = jwt.sign(
+  //   { user_id: newUser.id, email },
+  //   "secretkeyappearshere",
+  //   {
+  //     expiresIn: "2h",
+  //   }
+  // );
 
   // newUser.token = token;
 
-  // users.push(newUser);
+  users.push(newUser);
   
 
   users = JSON.stringify(users, null, 2);
@@ -77,13 +77,13 @@ const signIn = (req, res) => {
   //   console.log(checkLogin, "check");'
 
   if (checkLogin && checkLogin.password === password) {
-    const token = jwt.sign(
-      { user_id: checkLogin.id, email },
-      "secretkeyappearshere",
-      {
-        expiresIn: "2h",
-      }
-    );
+    // const token = jwt.sign(
+    //   { user_id: checkLogin.id, email },
+    //   "secretkeyappearshere",
+    //   {
+    //     expiresIn: "2h",
+    //   }
+    // );
 
     // checkLogin.token = token;
 
